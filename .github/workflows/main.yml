@@ -47,12 +47,16 @@ jobs:
       - name: Install System Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y unace unrar zip unzip p7zip-full sharutils rar uudeview mpack arj cabextract rename liblzma-dev python3-pip brotli lz4 protobuf-compiler git gawk
+          sudo apt-get install -y \
+            unace unrar zip unzip p7zip-full sharutils rar \
+            uudeview mpack arj cabextract rename liblzma-dev \
+            python3-pip python3-protobuf brotli lz4 \
+            protobuf-compiler git gawk
 
       - name: Install Python Dependencies
         run: |
-          pip3 install backports.lzma protobuf twrpdtgen extract-dtb pycryptodome
-
+          sudo python3 -m pip install --break-system-packages \
+            backports.lzma protobuf twrpdtgen extract-dtb pycryptodome
       - name: Prepare and Clean URL
         id: prep
         run: |
